@@ -1,0 +1,134 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: rgb(249, 250, 251);
+    color: rgb(17, 24, 39);
+    line-height: 1.5;
+  }
+  
+  .container {
+    min-height: 100vh;
+  }
+  
+  /* Hero Section */
+  .hero {
+    padding: 4rem 1rem;
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+  
+  .hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+  }
+  
+  .logo {
+    color: rgb(37, 99, 235);
+  }
+  
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+  }
+  
+  .story-card {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-bottom: 4rem;
+  }
+  
+  .story-card h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgb(31, 41, 55);
+    margin-bottom: 1.5rem;
+  }
+  
+  .story-card p {
+    color: rgb(75, 85, 99);
+    margin-bottom: 1.5rem;
+  }
+  
+  .rocket {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    color: rgb(37, 99, 235);
+  }
+  
+  /* Team Section */
+  .team {
+    background-color: rgb(17, 24, 39);
+    padding: 4rem 1rem;
+  }
+  
+  .team h2 {
+    color: white;
+    text-align: center;
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+  }
+  
+  .team-grid {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .team-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .member-image {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid rgb(59, 130, 246);
+    margin-bottom: 1rem;
+  }
+  
+  .member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .team-member h3 {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .team-member p {
+    color: rgb(96, 165, 250);
+  }

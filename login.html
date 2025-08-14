@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="bottom.css">
+       
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <form class="registration-form">
+                <h2>Registro de Estudiante</h2>
+                
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido" name="apellido" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="grado">Grado</label>
+                    <select id="grado" name="grado" required>
+                        <option value="">Selecciona tu grado</option>
+                        <option value="10-1">10-1</option>
+                    
+                        <option value="11-1">11-1</option>
+                       
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Tipo de estudiante</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="beneficiario" name="tipo" value="beneficiario" required>
+                            <label for="beneficiario">Beneficiario</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="suplente" name="tipo" value="suplente">
+                            <label for="suplente">Suplente</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit">Registrarse</button>
+                    <button type="button" onclick="window.history.back()">
+                        ← Regresar al Menu
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
