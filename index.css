@@ -1,99 +1,49 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f9fafb;
-  margin: 0;
-  padding: 20px;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Control de Asistencia</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-}
+  <!-- Barra de navegación -->
+  <header class="navbar">
+    <button class="btn-back" onclick="window.history.back()">⬅ Regresar</button>
+    <h2>Control de Asistencia</h2>
+  </header>
 
-.search-container,
-.buttons {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 15px;
-  gap: 10px;
-}
+  <!-- Contenedor principal -->
+  <main class="container">
+    <div class="card">
+      <h3>Registrar Asistencia</h3>
 
-input[type="text"] {
-  padding: 8px;
-  width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
+      <div class="search-container">
+        <input type="text" id="codigoInput" placeholder="Ingresa el código..." />
+        <button onclick="registrarAsistencia()">Registrar</button>
+      </div>
 
-button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  background-color: #4f46e5;
-  color: white;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
+      <div class="buttons">
+        <button onclick="marcarTodos(true)">Marcar todos como asistieron</button>
+        <button class="danger" onclick="marcarTodos(false)">Marcar todos como no asistieron</button>
+      </div> 
 
-button:hover {
-  background-color: #4338ca;
-}
+      <table id="tablaAsistencia">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th class="center">Asistencia</th>
+          </tr> 
+        </thead>
+        <tbody id="cuerpoTabla"></tbody>
+      </table>
+    </div>
+  </main>
+  
+  <div id="toastContainer"></div>
 
-button.danger {
-  background-color: #dc2626;
-}
-
-button.danger:hover {
-  background-color: #b91c1c;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-th, td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-th {
-  background-color: #f3f4f6;
-}
-
-tr:hover {
-  background-color: #f1f5f9;
-}
-
-.center {
-  text-align: center;
-}
-
-/* Toast */
-#toastContainer {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 9999;
-}
-
-.toast {
-  background-color: #f87171; /* rojo claro */
-  color: white;
-  padding: 12px 20px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  font-weight: bold;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  opacity: 0.95;
-  animation: fadeOut 4s forwards;
-}
-
-@keyframes fadeOut {
-  0%   { opacity: 1; }
-  80%  { opacity: 1; }
-  100% { opacity: 0; transform: translateX(100px); }
-}
+  <script src="index.js"></script>
+</body>
+</html>
