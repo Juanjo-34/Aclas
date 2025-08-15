@@ -3,34 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Asistencia por Código</title>
+  <title>Control de Asistencia</title>
   <link rel="stylesheet" href="index.css" />
 </head>
 <body>
 
-  <h1>Control de Asistencia</h1>
+  <!-- Barra de navegación -->
+  <header class="navbar">
+    <button class="btn-back" onclick="window.history.back()">⬅ Regresar</button>
+    <h2>Control de Asistencia</h2>
+  </header>
 
-  <div class="search-container">
-    <input type="text" id="codigoInput" placeholder="Ingresa el código..." />
-    <button onclick="registrarAsistencia()">Registrar</button>
-  </div>
+  <!-- Contenedor principal -->
+  <main class="container">
+    <div class="card">
+      <h3>Registrar Asistencia</h3>
 
-  <div class="buttons">
-    <button onclick="marcarTodos(true)">Marcar todos como asistieron</button>
-    <button class="danger" onclick="marcarTodos(false)">Marcar todos como no asistieron</button>
-  </div>
+      <div class="search-container">
+        <input type="text" id="codigoInput" placeholder="Ingresa el código..." />
+        <button onclick="registrarAsistencia()">Registrar</button>
+      </div>
 
-  <table id="tablaAsistencia">
-    <thead>
-      <tr>
-        <th>Código</th>
-        <th>Nombre</th>
-        <th class="center">Asistencia</th>
-      </tr> 
-    </thead>
-    <tbody id="cuerpoTabla"></tbody>
-  </table>
+      <div class="buttons">
+        <button onclick="marcarTodos(true)">Marcar todos como asistieron</button>
+        <button class="danger" onclick="marcarTodos(false)">Marcar todos como no asistieron</button>
+      </div> 
 
+      <table id="tablaAsistencia">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th class="center">Asistencia</th>
+          </tr> 
+        </thead>
+        <tbody id="cuerpoTabla"></tbody>
+      </table>
+    </div>
+  </main>
   
   <div id="toastContainer"></div>
 
