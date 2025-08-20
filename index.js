@@ -1,110 +1,120 @@
-// Base de datos simulada (21 personas)
-const asistentes = [
-  { codigo: "123", nombre: "Juan José", asistio: false },
-  { codigo: "124", nombre: "María Pérez", asistio: false },
-  { codigo: "125", nombre: "Carlos López", asistio: false },
-  { codigo: "126", nombre: "Ana Gómez", asistio: false },
-  { codigo: "127", nombre: "Luis Martínez", asistio: false },
-  { codigo: "128", nombre: "Paula Torres", asistio: false },
-  { codigo: "129", nombre: "Sofía Ramírez", asistio: false },
-  { codigo: "130", nombre: "Jorge Díaz", asistio: false },
-  { codigo: "131", nombre: "Elena Ríos", asistio: false },
-  { codigo: "132", nombre: "Mateo Herrera", asistio: false },
-  { codigo: "133", nombre: "Camila Vargas", asistio: false },
-  { codigo: "134", nombre: "Andrés Castro", asistio: false },
-  { codigo: "135", nombre: "Valentina Jiménez", asistio: false },
-  { codigo: "136", nombre: "Tomás Morales", asistio: false },
-  { codigo: "137", nombre: "Daniela Sánchez", asistio: false },
-  { codigo: "138", nombre: "Gabriel Fernández", asistio: false },
-  { codigo: "139", nombre: "Isabella Ruiz", asistio: false },
-  { codigo: "140", nombre: "Sebastián Pardo", asistio: false },
-  { codigo: "141", nombre: "Natalia Cárdenas", asistio: false },
-  { codigo: "142", nombre: "Felipe Ortega", asistio: false },
-  { codigo: "143", nombre: "Lucía Mendoza", asistio: false }
-
+// Base de datos simulada (20 estudiantes con código, nombre y grado)
+let estudiantes = [
+  { codigo: "123", nombre: "Juan Pérez", grado: "10°", asistencia: false },
+  { codigo: "124", nombre: "María López", grado: "9°", asistencia: false },
+  { codigo: "125", nombre: "Carlos Ramírez", grado: "11°", asistencia: false },
+  { codigo: "126", nombre: "Laura Martínez", grado: "10°", asistencia: false },
+  { codigo: "127", nombre: "Andrés Torres", grado: "8°", asistencia: false },
+  { codigo: "128", nombre: "Sofía Gómez", grado: "7°", asistencia: false },
+  { codigo: "129", nombre: "Valentina Ruiz", grado: "9°", asistencia: false },
+  { codigo: "130", nombre: "David Morales", grado: "11°", asistencia: false },
+  { codigo: "131", nombre: "Camila Herrera", grado: "10°", asistencia: false },
+  { codigo: "132", nombre: "Mateo Jiménez", grado: "8°", asistencia: false },
+  { codigo: "133", nombre: "Isabella Castro", grado: "9°", asistencia: false },
+  { codigo: "134", nombre: "Samuel Ortiz", grado: "11°", asistencia: false },
+  { codigo: "135", nombre: "Daniela Romero", grado: "10°", asistencia: false },
+  { codigo: "136", nombre: "Martín Silva", grado: "7°", asistencia: false },
+  { codigo: "137", nombre: "Lucía Méndez", grado: "9°", asistencia: false },
+  { codigo: "138", nombre: "Felipe Vargas", grado: "11°", asistencia: false },
+  { codigo: "139", nombre: "Ana Torres", grado: "10°", asistencia: false },
+  { codigo: "140", nombre: "Julián Navarro", grado: "8°", asistencia: false },
+  { codigo: "141", nombre: "Paula Cruz", grado: "9°", asistencia: false },
+  { codigo: "142", nombre: "Sebastián Duarte", grado: "11°", asistencia: false }
 ];
 
-// Lista de personas que ya se mostraron en la tabla
-let mostrados = [];
-
-const cuerpoTabla = document.getElementById("cuerpoTabla");
-const codigoInput = document.getElementById("codigoInput");
-
+// Renderizar tabla (solo muestra los que ya se registraron)
 function renderTabla() {
+  const cuerpoTabla = document.getElementById("cuerpoTabla");
   cuerpoTabla.innerHTML = "";
-  mostrados.forEach((p, index) => {
-    const fila = document.createElement("tr");
-    fila.innerHTML = `
-      <td>${p.codigo}</td>
-      <td>${p.nombre}</td>
-      <td class="center">
-        <label>
-          <input type="checkbox" ${p.asistio ? "checked" : ""} onchange="toggleAsistencia(${index})">
-          ${p.asistio ? "Sí" : "No"}
-        </label>
-      </td>
-    `;
-    cuerpoTabla.appendChild(fila);
+
+  estudiantes.forEach(est => {
+    if (est.asistencia) {
+      let fila = document.createElement("tr");
+
+      fila.innerHTML = `
+        <td>${est.codigo}</td>
+        <td>${est.nombre}</td>
+        <td>${est.grado}</td>
+        <td class="center">
+          <input type="checkbox" ${est.asistencia ? "checked" : ""} 
+          onchange="cambiarAsistencia('${est.codigo}', this.checked)" />
+        </td>
+        <td class="center">
+          <button onclick="eliminarEstudiante('${est.codigo}')" class="btnEliminar">❌</button>
+        </td>
+      `;
+
+      cuerpoTabla.appendChild(fila);
+    }
   });
 }
 
-function toggleAsistencia(index) {
-  mostrados[index].asistio = !mostrados[index].asistio;
-  renderTabla();
+// Cambiar asistencia individual
+function cambiarAsistencia(codigo, valor) {
+  const estudiante = estudiantes.find(e => e.codigo === codigo);
+  if (estudiante) {
+    estudiante.asistencia = valor;
+  }
 }
 
-function marcarTodos(estado) {
-  mostrados.forEach(p => p.asistio = estado);
-  renderTabla();
-}
-
+// Registrar asistencia con código
 function registrarAsistencia() {
-  const codigo = codigoInput.value.trim();
+  const input = document.getElementById("codigoInput");
+  const codigo = input.value.trim().toUpperCase();
+  const estudiante = estudiantes.find(e => e.codigo === codigo);
 
-  if (!codigo) {
-    mostrarToast("⚠️ Por favor, ingresa un código.", "error");
-    return;
-  }
-
-  const persona = asistentes.find(p => p.codigo === codigo);
-
-  if (persona) {
-    if (!persona.asistio) {
-      persona.asistio = true;
-      mostrarToast(`✅ Asistencia registrada para ${persona.nombre}`, "success");
+  if (estudiante) {
+    if (!estudiante.asistencia) {
+      estudiante.asistencia = true;
+      mostrarToast(`Asistencia registrada: ${estudiante.nombre} (${estudiante.grado})`);
     } else {
-      mostrarToast(`ℹ️ ${persona.nombre} ya estaba marcado como asistente`, "info");
+      mostrarToast(`ℹ️ ${estudiante.nombre} ya estaba registrado`);
     }
-
-    // Si la persona no está en la tabla, la agregamos
-    if (!mostrados.includes(persona)) {
-      mostrados.push(persona);
-    }
+    renderTabla();
   } else {
-    mostrarToast(`❌ Código "${codigo}" no encontrado`, "error");
+    mostrarToast("⚠️ Código no encontrado");
   }
 
-  codigoInput.value = "";
+  input.value = "";
+}
+
+// Eliminar estudiante de la tabla
+function eliminarEstudiante(codigo) {
+  const estudiante = estudiantes.find(e => e.codigo === codigo);
+  if (estudiante) {
+    estudiante.asistencia = false; // Lo quitamos de la lista de asistencia
+    renderTabla();
+    mostrarToast(`❌ Eliminado: ${estudiante.nombre}`);
+  }
+}
+
+// Marcar todos
+function marcarTodos(valor) {
+  estudiantes.forEach(e => {
+    if (e.asistencia) e.asistencia = valor;
+  });
   renderTabla();
 }
 
-function mostrarToast(mensaje, tipo = "error") {
+// Guardar cambios (simulado)
+function guardarCambios() {
+  console.log("Datos guardados:", estudiantes.filter(e => e.asistencia));
+  mostrarToast("✅ Cambios guardados correctamente");
+}
+
+// Toast (mensajes flotantes)
+function mostrarToast(mensaje) {
   const container = document.getElementById("toastContainer");
   const toast = document.createElement("div");
-  toast.className = "toast";
-  toast.textContent = mensaje;
-
-  if (tipo === "success") {
-    toast.style.backgroundColor = "#22c55e";
-  } else if (tipo === "info") {
-    toast.style.backgroundColor = "#3b82f6";
-  } else {
-    toast.style.backgroundColor = "#ef4444";
-  }
-
+  toast.classList.add("toast");
+  toast.innerText = mensaje;
   container.appendChild(toast);
-  setTimeout(() => toast.remove(), 4000);
+
+  setTimeout(() => {
+    toast.remove();
+  }, 4000);
 }
 
-renderTabla();
+// Inicializar
+document.addEventListener("DOMContentLoaded", renderTabla);
 
