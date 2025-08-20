@@ -13,7 +13,7 @@ body {
   padding: 15px 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* espacio entre botón y título */
+  justify-content: space-between;
   position: relative;
 }
 
@@ -52,7 +52,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   width: 100%;
-  max-width: 900px;
+  max-width: 950px;
 }
 
 .card h3 {
@@ -97,6 +97,14 @@ button.danger {
 
 button.danger:hover {
   background-color: #b91c1c;
+}
+
+button.success {
+  background-color: #16a34a;
+}
+
+button.success:hover {
+  background-color: #15803d;
 }
 
 /* Tabla */
@@ -150,4 +158,5 @@ tr:hover {
   80%  { opacity: 1; }
   100% { opacity: 0; transform: translateX(100px); }
 }
+
 
