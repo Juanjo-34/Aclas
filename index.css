@@ -88,11 +88,11 @@ button {
 }
 
 button:hover {
-  background-color: #4338ca;
+  background-color: #160b77;
 }
 
 button.danger {
-  background-color: #dc2626;
+  background-color: #160b77;
 }
 
 button.danger:hover {
